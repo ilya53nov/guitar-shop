@@ -7,9 +7,11 @@ export interface Guitar {
   description: string;
   createdAt?: Date;
   image: string;
-  type: GuitarType;
+  //type: GuitarType;
+  type: string;
   article: string;
-  stringCount: GuitarString;
+  //stringCount: GuitarString;
+  stringCount: string;
   rating?: number;
   price: number;
   reviewCount?: number;

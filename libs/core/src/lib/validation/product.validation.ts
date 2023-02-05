@@ -1,6 +1,6 @@
 import { GuitarType, GuitarString } from '@project/shared-types';
 
-export const GuitarValidation = {
+export const ProductValidation = {
   TitleLength: {
     min: 10,
     max: 100,
@@ -10,7 +10,7 @@ export const GuitarValidation = {
     max: 1024,
   },
   Image: {
-    fileType: /image\/(jpg|png)$/,
+    fileType: /image\/(jpg|png)$/, // реализовать список доступных форматов
   },
   ArticleLength: {
     min: 5,
