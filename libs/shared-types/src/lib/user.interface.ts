@@ -4,8 +4,8 @@ export interface User {
   id?: string;
   name: string;
   email: string;
-  password: string;
-  role?: UserRole;
+  password?: string;
+  role?: string;
   passwordHash?: string;
   refreshTokenHash?: string;
 }
