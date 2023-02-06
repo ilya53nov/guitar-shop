@@ -1,0 +1,24 @@
+# Create a new comment
+POST http://localhost:3333/api/comment HTTP/1.1
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2MyOTljMmE5ODJjNDYxZTNmMGM5MWYiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQxLmxvY2FsIiwicm9sZSI6ItCX0LDQutCw0LfRh9C40LoiLCJsYXN0bmFtZSI6IlNtaXRoIiwiZmlyc3RuYW1lIjoic3NzcyIsImlhdCI6MTY3MzcxODEwMywiZXhwIjoxNjczODE4MTAzfQ.rI5co4dqsYZOL246i0gBsKUBdj5lC5_MLUtsHoxZyQk
+Content-Type: application/json
+
+{
+  "productId": "2c882e55-0fc0-483d-a8cc-1f8972ff2874",
+  "authorId": "8eae54b1-94da-4d15-8586-8d3fe33c805b",
+  "rating": 4,
+  "text": "string",
+  "positive": "stringstringstringstringstringstringstringstringstring",
+  "negative": "stringstringstringstringstringstringstringstringstring"
+}
+
+###
+
+
+# Get all products
+
+GET http://localhost:3333/api/product HTTP/1.1
+
+###
+
+

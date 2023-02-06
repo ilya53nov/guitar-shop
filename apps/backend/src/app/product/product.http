@@ -9,9 +9,21 @@ Content-Type: application/json
   "type": "электро",
   "article": "string",
   "stringCount": "4",
-  "rating": 4,
   "image": "sddsfds",
   "price": 100
+}
+
+###
+
+# Update product
+PATCH http://localhost:3333/api/product/d6bd96c9-d33c-4210-a817-5cb701834c6e HTTP/1.1
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2MyOTljMmE5ODJjNDYxZTNmMGM5MWYiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQxLmxvY2FsIiwicm9sZSI6ItCX0LDQutCw0LfRh9C40LoiLCJsYXN0bmFtZSI6IlNtaXRoIiwiZmlyc3RuYW1lIjoic3NzcyIsImlhdCI6MTY3MzcxODEwMywiZXhwIjoxNjczODE4MTAzfQ.rI5co4dqsYZOL246i0gBsKUBdj5lC5_MLUtsHoxZyQk
+Content-Type: application/json
+
+{
+  "title": "stringstring123",
+  "stringCount": "12",
+  "price": 10
 }
 
 ###
@@ -19,5 +31,17 @@ Content-Type: application/json
 # Get all products
 
 GET http://localhost:3333/api/product HTTP/1.1
+
+###
+
+# Get product
+
+GET http://localhost:3333/api/product/2c882e55-0fc0-483d-a8cc-1f8972ff2874 HTTP/1.1
+
+###
+
+# Delete product
+
+DELETE http://localhost:3333/api/product/d6bd96c9-d33c-4210-a817-5cb701834c6e HTTP/1.1
 
 ###

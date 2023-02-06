@@ -29,7 +29,7 @@ model User {
   id String @id @default(uuid())
   name String
   email String @unique
-  role Role @default(USER)
+  role String 
   passwordHash String
   refreshTokenHash String
   comments Comment[]
@@ -47,10 +47,3 @@ model Comment {
   negative String
   createdAt DateTime @default(now())
 }
-
-enum Role {
-  USER
-  ADMIN
-}
-
-

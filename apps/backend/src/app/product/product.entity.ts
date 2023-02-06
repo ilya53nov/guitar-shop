@@ -18,11 +18,11 @@ export class ProductEntity implements Entity<ProductEntity, Guitar>, Guitar {
     this.fillEntity(product);
   }
 
-  toObject(): ProductEntity {
+  public toObject(): ProductEntity {
     return {...this};
   }
 
-  fillEntity(entity: Guitar): void {
+  public fillEntity(entity: Guitar): void {
     this.id = entity.id;
     this.title = entity.title;
     this.description = entity.description;
