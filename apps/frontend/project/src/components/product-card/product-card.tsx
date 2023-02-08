@@ -1,13 +1,8 @@
 import React from 'react';
+import { useProductsQuery } from 'src/store/api';
 
 export default function ProductCard():JSX.Element {
-  //const test = fetch('http://localhost:3333/api/product');
 
-  //console.log(test);
-
-  fetch('http://localhost:3333/api/product')
-  .then((response) => response.json())
-  .then((data) => console.log(data))
 
   return(
     <div className="product-card"><img src="img/content/catalog-product-1.png" srcSet="img/content/catalog-product-1@2x.png 2x" width="75" height="190" alt="Честер Bass" />

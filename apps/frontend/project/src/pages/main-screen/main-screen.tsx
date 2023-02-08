@@ -5,8 +5,13 @@ import PageFooter from 'src/components/page-footer/page-footer';
 import PageHeader from 'src/components/page-header/page-header';
 import PaginationList from 'src/components/pagination/pagination-list';
 import ProductCard from 'src/components/product-card/product-card';
+import { useProductsQuery } from 'src/store/api';
 
 export default function MainScreen():JSX.Element {
+  const {data,isLoading} = useProductsQuery({});
+
+  console.log(data);
+
   return(
     <>
       <PageHeader />
