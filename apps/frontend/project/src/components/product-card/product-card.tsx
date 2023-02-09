@@ -1,7 +1,9 @@
 import React from 'react';
-import { useProductsQuery } from 'src/store/api';
+
 
 export default function ProductCard():JSX.Element {
+
+
 
 
   return(

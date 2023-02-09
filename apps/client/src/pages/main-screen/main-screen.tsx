@@ -3,13 +3,15 @@ import CatalogSort from '../../components/catalog-sort/catalog-sort';
 import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from '../../components/page-header/page-header';
 import PaginationList from '../../components/pagination/pagination-list';
-import ProductCard from '../../components/product-card/product-card';
+import ProductCardList from '../../components/product-card/product-card-list';
 import { useProductsQuery } from '../../store/api';
 
 export default function MainScreen():JSX.Element {
-  const {data,isLoading} = useProductsQuery({});
+  const {data,isLoading, isSuccess} = useProductsQuery({});
 
-  console.log(data);
+  if (!isSuccess) {
+    return(<div>not success</div>)
+  }
 
   return(
     <>
@@ -26,14 +28,7 @@ export default function MainScreen():JSX.Element {
           <div className="catalog">
             <CatalogFilter />
             <CatalogSort />
-            <div className="cards catalog__cards">
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-              <ProductCard />
-            </div>
-
+            <ProductCardList products={data} />
             <PaginationList />
           </div>
         </div>

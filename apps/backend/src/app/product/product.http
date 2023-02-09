@@ -4,13 +4,13 @@ POST http://localhost:3333/api/product HTTP/1.1
 Content-Type: application/json
 
 {
-  "title": "stringstring",
+  "title": "stringstring2",
   "description": "stringstringstringstring",
   "type": "электро",
   "article": "string",
   "stringCount": "4",
   "image": "sddsfds",
-  "price": 100
+  "price": 17000
 }
 
 ###

@@ -1,31 +1,18 @@
+import {ProductRdo} from '@project/core';
+import ProductCardRate from '../product-card-rate/product-card-rate';
 
-export default function ProductCard():JSX.Element {
+type ProductProps = {
+  product: ProductRdo;
+}
 
+export default function ProductCard({product}: ProductProps):JSX.Element {
 
   return(
-    <div className="product-card"><img src="src/assets/img/content/catalog-product-1.png" srcSet="src/assets/img/content/catalog-product-1@2x.png 2x" width="75" height="190" alt="Честер Bass" />
+    <div className="product-card"><img src="src/assets/img/content/catalog-product-1.png" srcSet="src/assets/img/content/catalog-product-1@2x.png 2x" width="75" height="190" alt={product.title} />
       <div className="product-card__info">
-        <div className="rate product-card__rate">
-          <svg width="12" height="11" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="12" height="11" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="12" height="11" aria-hidden="true">
-            <use xlinkHref="#icon-full-star"></use>
-          </svg>
-          <svg width="12" height="11" aria-hidden="true">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-          <svg width="12" height="11" aria-hidden="true">
-            <use xlinkHref="#icon-star"></use>
-          </svg>
-          <p className="visually-hidden">Рейтинг: Хорошо</p>
-          <p className="rate__count"><span className="visually-hidden">Всего оценок:</span>15</p>
-        </div>
-        <p className="product-card__title">Честер Bass</p>
-        <p className="product-card__price"><span className="visually-hidden">Цена:</span>17 500 ₽</p>
+        <ProductCardRate rating={product.rating} />
+        <p className="product-card__title">{product.title}</p>
+        <p className="product-card__price"><span className="visually-hidden">Цена:</span>{product.price.toLocaleString()} ₽</p>
       </div>
       <div className="product-card__buttons"><a className="button button--mini" href="#">Подробнее</a><a className="button button--red-border button--mini button--in-cart" href="#">В Корзине</a>
       </div>
