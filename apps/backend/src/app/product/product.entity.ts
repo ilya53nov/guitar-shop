@@ -9,7 +9,7 @@ export class ProductEntity implements Entity<ProductEntity, Guitar>, Guitar {
   public image: string;
   public type: string;
   public article: string;
-  public stringCount: string;
+  public stringCount: number;
   public rating?: number;
   public price: number;
   public reviewCount?: number;

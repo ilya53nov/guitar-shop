@@ -11,7 +11,7 @@ export interface Guitar {
   type: string;
   article: string;
   //stringCount: GuitarString;
-  stringCount: string;
+  stringCount: number;
   rating?: number;
   price: number;
   reviewCount?: number;

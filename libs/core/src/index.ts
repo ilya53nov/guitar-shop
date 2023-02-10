@@ -8,3 +8,7 @@ export * from './lib/helpers';
 export * from './lib/rdo/product.rdo';
 export * from './lib/rdo/comment.rdo';
 export * from './lib/rdo/user.rdo';
+export * from './lib/validation/product.validation';
+export * from './lib/validation/comment.validation';
+export * from './lib/validation/user.validation';
+export * from './lib/validation/order.validation';

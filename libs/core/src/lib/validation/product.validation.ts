@@ -27,3 +27,4 @@ export const ProductValidation = {
     max: 1000000,
   }
 } as const;
+

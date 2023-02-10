@@ -24,7 +24,7 @@ export class ProductRdo implements Guitar {
   article!: string;
 
   @Expose()
-  stringCount!: string;
+  stringCount!: number;
 
   @Expose()
   rating!: number;

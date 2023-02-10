@@ -18,7 +18,7 @@ model Product {
   image String
   type String
   article String
-  stringCount String
+  stringCount Int
   rating Int @default(0)
   price Int
   reviewCount Int?
