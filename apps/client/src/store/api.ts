@@ -1,3 +1,4 @@
+import { CreateProductDto } from '@project/core';
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 export const api = createApi({
@@ -5,13 +6,18 @@ export const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:3333/api"
   }),
-  tagTypes:['Product'],
   endpoints: (builder) => ({
-    products: builder.query({
+    getProducts: builder.query({
       query: () => '/product',
-      providesTags: ['Product'],
-    })
+    }),
+    addNewProduct: builder.mutation({
+      query: (product: CreateProductDto) => ({
+        url: '/product',
+        method: 'POST',
+        body: product,
+      }),
+    }),
   })
 });
 
-export const {useProductsQuery} = api;
+export const {useAddNewProductMutation, useGetProductsQuery} = api;

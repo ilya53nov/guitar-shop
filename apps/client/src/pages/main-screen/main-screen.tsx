@@ -4,10 +4,10 @@ import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from '../../components/page-header/page-header';
 import PaginationList from '../../components/pagination/pagination-list';
 import ProductCardList from '../../components/product-card/product-card-list';
-import { useProductsQuery } from '../../store/api';
+import { useGetProductsQuery } from '../../store/api';
 
 export default function MainScreen():JSX.Element {
-  const {data,isLoading, isSuccess} = useProductsQuery({});
+  const {data,isLoading, isSuccess} = useGetProductsQuery({});
 
   if (!isSuccess) {
     return(<div>not success</div>)
