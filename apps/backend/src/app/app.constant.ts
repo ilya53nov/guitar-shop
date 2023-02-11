@@ -1,0 +1,1 @@
+export const BACKEND_ENV_FILE_PATH = 'apps/backend/environments/.backend.env';

@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { CreateProductDto, fillObject, ProductRdo, UpdateProductDto } from '@project/core';
+import { CreateImageProductDto, CreateProductDto, fillObject, getImageStaticPath, ImageRdo, ProductRdo, UpdateProductDto } from '@project/core';
+import { ApiRoute } from '@project/shared-types';
 import { ProductEntity } from './product.entity';
 import { ProductRepository } from './product.repository';
 
@@ -8,7 +9,7 @@ export class ProductService {
   constructor(private readonly productRepository: ProductRepository) {}
 
   public async create(createProductDto: CreateProductDto) {    
-    const productEntity = await new ProductEntity(createProductDto);
+    const productEntity = new ProductEntity(createProductDto);
 
     const newProduct = await this.productRepository.create(productEntity);
 
@@ -29,7 +30,7 @@ export class ProductService {
 
   public async update(id: string, updateProductDto: UpdateProductDto) {
     const product = await this.productRepository.findById(id);
-    const productEntity = await new ProductEntity({ ...product, ...updateProductDto});
+    const productEntity = new ProductEntity({ ...product, ...updateProductDto });
     const updatedProduct = await this.productRepository.update(id, productEntity);
 
     return fillObject(ProductRdo, updatedProduct);
@@ -37,5 +38,11 @@ export class ProductService {
 
   public async remove(id: string) {
     await this.productRepository.destroy(id);
+  }
+
+  public async getImagePath(imageFileName: string): Promise<ImageRdo> {
+    const imagePath = getImageStaticPath(process.env.HOST, process.env.PORT, ApiRoute.Static, imageFileName);
+
+    return {image: imagePath};
   }
 }

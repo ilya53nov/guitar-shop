@@ -45,3 +45,20 @@ GET http://localhost:3333/api/product/2c882e55-0fc0-483d-a8cc-1f8972ff2874 HTTP/
 DELETE http://localhost:3333/api/product/d6bd96c9-d33c-4210-a817-5cb701834c6e HTTP/1.1
 
 ###
+
+
+# Upload Avatar
+POST http://localhost:3333/api/product/image
+//Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI2M2M1OWU5ZWYwYmE3MGJiYjA0ZjNjMTMiLCJlbWFpbCI6InVzZXJAbm90Zm91bmQxLmxvY2FsIiwicm9sZSI6ItCX0LDQutCw0LfRh9C40LoiLCJsYXN0bmFtZSI6ItCY0LLQsNC90L7QsiIsImZpcnN0bmFtZSI6ItCY0LLQsNC9IiwiaWF0IjoxNjczODk1NTg1LCJleHAiOjE2NzM4OTc1ODV9.kXOa0vCm1pgMY3vXi9xN-VBCjjp4zqDbqNQJckC8g4I
+Content-Type: multipart/form-data; boundary=Upload
+
+--Upload
+Content-Disposition: form-data; name="file"; filename="1.png"
+Content-Type: image/png
+
+
+
+< /home/ilya/Рабочий стол/develop/guitar-shop/apps/client/src/assets/img/content/catalog-product-7.png
+--Upload--
+
+###

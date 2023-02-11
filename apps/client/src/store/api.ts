@@ -1,4 +1,4 @@
-import { CreateProductDto } from '@project/core';
+import { CreateProductDto, ImageRdo } from '@project/core';
 import {createApi,fetchBaseQuery} from '@reduxjs/toolkit/query/react'
 
 export const api = createApi({
@@ -17,7 +17,15 @@ export const api = createApi({
         body: product,
       }),
     }),
+    addImage: builder.mutation({
+      query: (image: any) => ({
+        url: '/product/image',
+        method: 'POST',
+        body: image,        
+      }),
+      transformResponse: (response: { data: ImageRdo }, meta, arg) => response,
+    }),
   })
 });
 
-export const {useAddNewProductMutation, useGetProductsQuery} = api;
+export const {useAddNewProductMutation, useGetProductsQuery, useAddImageMutation} = api;

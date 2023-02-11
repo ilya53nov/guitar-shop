@@ -6,3 +6,5 @@ export * from './lib/order.interface';
 export * from './lib/user-role.enum';
 export * from './lib/user.interface';
 export * from './lib/exception-description.enum';
+export * from './lib/api-route.enum';
+export * from './lib/parametr-key.enum';

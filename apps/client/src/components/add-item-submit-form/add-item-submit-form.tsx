@@ -1,7 +1,7 @@
 import { CreateProductDto } from '@project/core';
 import { GuitarString, GuitarType } from '@project/shared-types';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
-import { useAddNewProductMutation } from '../../store/api';
+import { useAddImageMutation, useAddNewProductMutation } from '../../store/api';
 import DescriptionInput from './input-fields/description-input';
 import PriceInput from './input-fields/price-input';
 import SkuInput from './input-fields/sku-input';
@@ -9,19 +9,54 @@ import TitleInput from './input-fields/title-input';
 
 export default function AddItemSubmitForm():JSX.Element {
   const [addPost] = useAddNewProductMutation();
+  const [addImage, data] = useAddImageMutation();
 
   const [title, setTitle] = useState('');
   const [sku, setSku] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
+  const [imageUrl, setImageUrl] = useState('');
+  const [file, setFile] = useState<FormData>();
+
+  const filePickerRef = useRef<HTMLInputElement | null>(null);
+
+  const handleClick = () => {
+    filePickerRef.current?.click();
+  }
+
+  const handleChange = (evt: ChangeEvent<HTMLInputElement>) => {
+    evt.preventDefault();
+
+    if (!evt.target.files) {
+      return;
+    }
+
+    setImageUrl(URL.createObjectURL(evt.target.files[0]));
+    
+    const formData = new FormData();
+    formData.append('file', evt.target.files[0]);
+
+    setFile(formData);
+  }
 
   const onSubmit = async (createProductDto: CreateProductDto) => {
     await addPost(createProductDto);
   }
   
-  const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
+
+    if (!file) {
+      return;
+    }
+
+    const imagePath = await addImage(file);
+
+
+    
+
+    console.log(imagePath);
+    console.log(data);
 
     onSubmit({
       article: sku,
@@ -41,12 +76,13 @@ export default function AddItemSubmitForm():JSX.Element {
       <div className="add-item__form-left">
         <div className="edit-item-image add-item__form-image">
           <div className="edit-item-image__image-wrap">
-            <img src={image} />
+            <img src={imageUrl} />
             
           </div>
+          <input className='visually-hidden' type='file' ref={filePickerRef} onChange={handleChange} />
 
           <div className="edit-item-image__btn-wrap">
-            <button  className="button button--small button--black-border edit-item-image__btn">Добавить
+            <button onClick={handleClick} className="button button--small button--black-border edit-item-image__btn">Добавить
             </button>
             <button className="button button--small button--black-border edit-item-image__btn">Удалить</button>
           </div>
