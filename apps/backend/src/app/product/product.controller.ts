@@ -17,6 +17,7 @@ import { CreateProductDto, ProductValidation, UpdateProductDto } from '@project/
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ApiRoute, ParametrKey } from '@project/shared-types';
 import { FileInterceptor } from '@nestjs/platform-express';
+import { Express } from 'express';
 
 @Controller('product')
 export class ProductController {

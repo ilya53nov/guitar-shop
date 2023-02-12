@@ -14,7 +14,7 @@ export class ProductRdo implements Guitar {
   @Expose()
   createdAt!: Date;
 
-  //@Expose()
+  @Expose()
   image!: string;
 
   @Expose()

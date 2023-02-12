@@ -1,15 +1,16 @@
-import InputField, { InputFieldProps, InputProps } from '../../input-field/input-field';
+import InputField, { InputFieldProps, InputProps } from '../input-field/input-field';
 
-export default function SkuInput({setValue, value}: InputProps):JSX.Element {
+export default function TitleInput({setValue, value, description, inputFieldEvent, typeField}: InputProps):JSX.Element {
   const inputFieldProps: InputFieldProps = {
-    className: "custom-input add-item__form-input",
-    description: 'Введите артикул товара',
-    name: 'sku',
-    placeholder: 'Артикул товара',
+    className: `custom-input ${inputFieldEvent}-item__form-input`,
+    description: description,
+    name: 'title',
+    placeholder: 'Наименование',
     readOnly: false,
     type: 'text',
     value: value,
-    onChange: setValue
+    onChange: setValue,
+    typeField: typeField,
   }
 
   return (
@@ -22,6 +23,7 @@ export default function SkuInput({setValue, value}: InputProps):JSX.Element {
       placeholder={inputFieldProps.placeholder}
       value={inputFieldProps.value}
       readOnly={inputFieldProps.readOnly}
+      typeField={typeField}
     />
   );
 }

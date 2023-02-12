@@ -7,7 +7,7 @@ import ProductCardList from '../../components/product-card/product-card-list';
 import { useGetProductsQuery } from '../../store/api';
 
 export default function MainScreen():JSX.Element {
-  const {data,isLoading, isSuccess} = useGetProductsQuery({});
+  const {data: products, isSuccess} = useGetProductsQuery({});
 
   if (!isSuccess) {
     return(<div>not success</div>)
@@ -28,7 +28,7 @@ export default function MainScreen():JSX.Element {
           <div className="catalog">
             <CatalogFilter />
             <CatalogSort />
-            <ProductCardList products={data} />
+            <ProductCardList products={products} />
             <PaginationList />
           </div>
         </div>

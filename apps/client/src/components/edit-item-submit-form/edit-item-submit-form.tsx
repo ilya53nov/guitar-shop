@@ -1,23 +1,27 @@
-import { CreateProductDto } from '@project/core';
+import { CreateProductDto, ProductRdo, UpdateProductDto } from '@project/core';
 import { ClientRoute, GuitarString, GuitarType } from '@project/shared-types';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAddImageMutation, useAddNewProductMutation } from '../../store/api';
+import { useAddImageMutation, useAddNewProductMutation, useUpdateProductMutation } from '../../store/api';
 import { InputFieldEvent, TypeField } from '../input-field/input-field';
 import DescriptionInput from '../input-fields/description-input';
 import PriceInput from '../input-fields/price-input';
 import SkuInput from '../input-fields/sku-input';
 import TitleInput from '../input-fields/title-input';
 
-export default function AddItemSubmitForm():JSX.Element {
-  const [addProduct] = useAddNewProductMutation();
+type EditItemSubmitFormProps = {
+  product: ProductRdo,
+}
+
+export default function EditItemSubmitForm({product}: EditItemSubmitFormProps):JSX.Element {
+  const [updateProduct] = useUpdateProductMutation();
   const [addImage] = useAddImageMutation();
 
-  const [title, setTitle] = useState('');
-  const [sku, setSku] = useState('');
-  const [price, setPrice] = useState('');
-  const [description, setDescription] = useState('');
-  const [imageUrl, setImageUrl] = useState('');
+  const [title, setTitle] = useState(product.title);
+  const [sku, setSku] = useState(product.article);
+  const [price, setPrice] = useState(product.price);
+  const [description, setDescription] = useState(product.description);
+  const [imageUrl, setImageUrl] = useState(product.image);
   const [file, setFile] = useState<FormData>();
 
   const filePickerRef = useRef<HTMLInputElement | null>(null);
@@ -47,18 +51,16 @@ export default function AddItemSubmitForm():JSX.Element {
     setFile(formData);
   }
 
-  const onSubmit = async (createProductDto: CreateProductDto) => {
-    await addProduct(createProductDto);
+  const onSubmit = async (updateProductDto: UpdateProductDto) => {
+    await updateProduct({id: product.id, updateProductDto: updateProductDto});
   }
   
   const handleSubmit = async (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
-    if (!file) {
-      return;
-    }
+    let imagePath: string;
 
-    const imagePath = await addImage(file).unwrap();
+    file ? imagePath = await addImage(file).unwrap() : imagePath = imageUrl;
 
     onSubmit({
       article: sku,
@@ -72,9 +74,9 @@ export default function AddItemSubmitForm():JSX.Element {
   }
 
   return (
-    <form className="add-item__form" action="#" onSubmit={handleSubmit}>
-      <div className="add-item__form-left">
-        <div className="edit-item-image add-item__form-image">
+    <form className="edit-item__form" action="#" onSubmit={handleSubmit}>
+      <div className="edit-item__form-left">
+        <div className="edit-item-image edit-item__form-image">
           <div className="edit-item-image__image-wrap">
             <img src={imageUrl} alt={title} />
             
@@ -106,20 +108,20 @@ export default function AddItemSubmitForm():JSX.Element {
           <label htmlFor="string-qty-12">12</label>
         </div>
       </div>
-      <div className="add-item__form-right">
-        <div className="custom-input add-item__form-input">
+      <div className="edit-item__form-right">
+        <div className="custom-input edit-item__form-input">
           <label><span>Дата добавления товара</span>
             <input type="text" name="date" value="12.01.1111" placeholder="Дата в формате 00.00.0000" readOnly={false} />
           </label>
           <p>Заполните поле</p>
         </div>
-        <TitleInput description='Введите наименование товара' inputFieldEvent={InputFieldEvent.Add} typeField={TypeField.Input} setValue={(evt) => setTitle(evt.target.value)} value={title} />
-        <PriceInput description='Введите цену товара' inputFieldEvent={InputFieldEvent.Add} typeField={TypeField.Input} setValue={(evt) => setPrice(evt.target.value)} value={price} />
-        <SkuInput description='Введите артикул товара' inputFieldEvent={InputFieldEvent.Add} typeField={TypeField.Input} setValue={(evt) => setSku(evt.target.value)} value={sku} />
-        <DescriptionInput description='Введите описание товара' inputFieldEvent={InputFieldEvent.Add} typeField={TypeField.TextArea} setValue={(evt) => setDescription(evt.target.value)} value={description} />
+        <TitleInput description='Наименование товара' inputFieldEvent={InputFieldEvent.Edit} typeField={TypeField.Input} setValue={(evt) => setTitle(evt.target.value)} value={title} />
+        <PriceInput description='Цена товара' inputFieldEvent={InputFieldEvent.Edit} typeField={TypeField.Input} setValue={(evt) => setPrice(+evt.target.value)} value={price} />
+        <SkuInput description='Артикул товара' inputFieldEvent={InputFieldEvent.Edit} typeField={TypeField.Input} setValue={(evt) => setSku(evt.target.value)} value={sku} />
+        <DescriptionInput description='Описание товара' inputFieldEvent={InputFieldEvent.Edit} typeField={TypeField.TextArea} setValue={(evt) => setDescription(evt.target.value)} value={description} />
 
       </div>
-      <div className="add-item__form-buttons-wrap">
+      <div className="edit-item__form-buttons-wrap">
         <button className="button button--small add-item__form-button" type="submit">Сохранить изменения</button>
         <button onClick={goProductsScreen} className="button button--small add-item__form-button" type="button">Вернуться к списку товаров</button>
       </div>
