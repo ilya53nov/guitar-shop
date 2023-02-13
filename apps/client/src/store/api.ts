@@ -42,7 +42,7 @@ export const api = createApi({
     }),
     addImage: builder.mutation({
       query: (image: FormData) => ({
-        url: `${ApiRoute.Product}${ApiRoute.UploadImage}`,
+        url: `${ApiRoute.Product}/${ApiRoute.UploadImage}`,
         method: 'POST',
         body: image,        
       }),

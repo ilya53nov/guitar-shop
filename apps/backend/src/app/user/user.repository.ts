@@ -7,8 +7,12 @@ import { UserEntity } from './user.entity';
 export class UserRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  findById(id: string): Promise<User> {
-    throw new Error('Method not implemented.');
+  public async findByEmail(email: string): Promise<User> {
+    return await this.prisma.user.findFirst({
+      where: {
+        email,
+      }
+    });
   }
 
   public async create(item: UserEntity): Promise<User> {

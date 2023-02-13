@@ -10,4 +10,7 @@ export class UserRdo implements User {
 
   @Expose()
   email!: string;
+
+  @Expose()
+  role!: string;
 }

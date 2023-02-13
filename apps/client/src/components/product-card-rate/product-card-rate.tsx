@@ -5,9 +5,9 @@ type ProductCardRateProps = {
 }
 
 export default function ProductCardRate({rating}: ProductCardRateProps):JSX.Element {
-  const fullStars = Array.from({length: rating}).map((item, index) => <IconStar key={index} star={Star.Full} />);
+  const fullStars = Array.from({length: rating}).map((_item, index) => <IconStar key={index} star={Star.Full} />);
 
-  const emptyStars = Array.from({length: 5 - rating}).map((item, index) => <IconStar key={index} star={Star.Empty} />);
+  const emptyStars = Array.from({length: 5 - rating}).map((_item, index) => <IconStar key={index} star={Star.Empty} />);
 
   const iconStars = [...fullStars, ...emptyStars];
 

@@ -14,3 +14,5 @@ export * from './lib/validation/product.validation';
 export * from './lib/validation/comment.validation';
 export * from './lib/validation/user.validation';
 export * from './lib/validation/order.validation';
+export * from './lib/strategies/jwt-access.strategy';
+export * from './lib/config/jwt.config';

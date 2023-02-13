@@ -1,6 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { ServeStaticModule } from '@nestjs/serve-static';
+import { jwtAccessOptions } from '@project/core';
 import { getServeStaticConfig, staticOptions } from '../config/static.config';
 import { BACKEND_ENV_FILE_PATH } from './app.constant';
 
@@ -18,7 +19,7 @@ import { UserModule } from './user/user.module';
       cache: true,
       isGlobal: true,
       envFilePath: BACKEND_ENV_FILE_PATH,
-      load: [staticOptions],
+      load: [staticOptions, jwtAccessOptions],
       //validate: validateEnvironments,
     }),
     ServeStaticModule.forRootAsync({

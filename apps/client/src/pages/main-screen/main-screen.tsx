@@ -15,7 +15,7 @@ export default function MainScreen():JSX.Element {
 
   return(
     <>
-      <PageHeader />
+      <PageHeader user={null} />
       <main className="page-content">
         <div className="container">
           <h1 className="page-content__title title title--bigger">Каталог гитар</h1>

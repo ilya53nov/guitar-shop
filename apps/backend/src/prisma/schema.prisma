@@ -23,6 +23,7 @@ model Product {
   price Int
   reviewCount Int?
   comments Comment[]
+  cart ProductOnCart[]
 }
 
 model User {
@@ -33,6 +34,19 @@ model User {
   passwordHash String
   refreshTokenHash String
   comments Comment[]
+  cart ProductOnCart[]
+  order Order[]
+}
+
+model ProductOnCart {
+  product Product @relation(fields: [productId], references: [id])
+  productId String
+  user User @relation(fields: [userId], references: [id])
+  userId String
+  order Order @relation(fields: [orderId], references: [id])
+  orderId String
+
+  @@id([productId, userId, orderId])
 }
 
 model Comment {
@@ -45,5 +59,13 @@ model Comment {
   text String
   positive String
   negative String
+  createdAt DateTime @default(now())
+}
+
+model Order {
+  id String @id @default(uuid())
+  user User @relation(fields: [userId], references: [id])
+  userId String  
+  cart ProductOnCart[]
   createdAt DateTime @default(now())
 }
