@@ -1,7 +1,8 @@
 import { useParams } from 'react-router-dom';
 import PageFooter from '../../components/page-footer/page-footer'
 import PageHeader from '../../components/page-header/page-header';
-import { useGetProductQuery } from '../../store/api';
+import { useGetProductQuery } from '../../store/product-api';
+
 
 export default function ProductScreen():JSX.Element {
   const params = useParams<string>();

@@ -1,6 +1,6 @@
 import { ProductRdo } from '@project/core';
 import { useNavigate } from 'react-router-dom';
-import { useDeleteProductMutation } from '../../store/api';
+import { useDeleteProductMutation } from '../../store/product-api';
 
 type CatalogItemProps = {
   product: ProductRdo

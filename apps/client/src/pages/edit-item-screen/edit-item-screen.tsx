@@ -2,7 +2,8 @@ import { useParams } from 'react-router-dom';
 import EditItemSubmitForm from '../../components/edit-item-submit-form/edit-item-submit-form';
 import PageFooter from '../../components/page-footer/page-footer'
 import PageHeader from '../../components/page-header/page-header';
-import { useGetProductQuery } from '../../store/api';
+import { useGetProductQuery } from '../../store/product-api';
+
 
 export default function EditItemScreen():JSX.Element {
   const params = useParams<string>();

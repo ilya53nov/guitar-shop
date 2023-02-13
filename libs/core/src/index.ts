@@ -3,6 +3,7 @@ export * from './lib/crud-repository.interface';
 export * from './lib/dto/create-product.dto';
 export * from './lib/dto/create-comment.dto';
 export * from './lib/dto/create-user.dto';
+export * from './lib/dto/login-user.dto';
 export * from './lib/dto/update-product.dto';
 export * from './lib/dto/create-image-product.dto';
 export * from './lib/helpers';

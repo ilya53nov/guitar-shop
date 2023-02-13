@@ -5,7 +5,7 @@ import { async } from "rxjs";
 import AddItemSubmitForm from '../../components/add-item-submit-form/add-item-submit-form';
 import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from "../../components/page-header/page-header";
-import { useAddNewProductMutation } from "../../store/api";
+
 
 export default function AddItemScreen():JSX.Element {
 

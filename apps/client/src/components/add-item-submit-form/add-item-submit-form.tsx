@@ -2,7 +2,7 @@ import { CreateProductDto } from '@project/core';
 import { ClientRoute, GuitarString, GuitarType } from '@project/shared-types';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAddImageMutation, useAddNewProductMutation } from '../../store/api';
+import { useAddImageMutation, useAddNewProductMutation } from '../../store/product-api';
 import { InputFieldEvent, TypeField } from '../input-field/input-field';
 import DescriptionInput from '../input-fields/description-input';
 import PriceInput from '../input-fields/price-input';

@@ -7,16 +7,22 @@ import {
   Param,
   Delete,
 } from '@nestjs/common';
-import { CreateUserDto } from '@project/core';
+import { CreateUserDto, LoginUserDto } from '@project/core';
+import { ApiRoute } from '@project/shared-types';
 import { UserService } from './user.service';
 
 @Controller('user')
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
-  @Post()
+  @Post(ApiRoute.Register)
   create(@Body() createUserDto: CreateUserDto) {
     return this.userService.create(createUserDto);
+  }
+
+  @Post(ApiRoute.Login)
+  public async login(@Body() loginUserDto: LoginUserDto) {        
+    return this.userService.loginUser(loginUserDto);
   }
 
   @Get()

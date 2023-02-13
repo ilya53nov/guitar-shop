@@ -1,4 +1,4 @@
-import { UserRole } from "@project/shared-types";
+import { ClientRoute, UserRole } from "@project/shared-types";
 import MainNav from "./main-nav/main-nav"
 import { MainNavListProps } from "./main-nav/main-nav-list";
 
@@ -29,7 +29,7 @@ export default function PageHeader({ user }: MainNavListProps):JSX.Element {
           <MainNav user={user}/>
           <div className="header__container">
             <span className="header__user-name">Имя</span>
-            <a className="header__link" href="login.html" aria-label="Перейти в личный кабинет">
+            <a className="header__link" href={ClientRoute.Login} aria-label="Перейти в личный кабинет">
               <svg className="header__link-icon" width="12" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-account"></use>
               </svg>

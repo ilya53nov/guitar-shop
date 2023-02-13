@@ -4,7 +4,8 @@ import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from '../../components/page-header/page-header';
 import PaginationList from '../../components/pagination/pagination-list';
 import ProductCardList from '../../components/product-card/product-card-list';
-import { useGetProductsQuery } from '../../store/api';
+import { useGetProductsQuery } from '../../store/product-api';
+
 
 export default function MainScreen():JSX.Element {
   const {data: products, isSuccess} = useGetProductsQuery({});

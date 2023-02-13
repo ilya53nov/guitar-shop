@@ -5,8 +5,8 @@ export enum ClientRoute {
   AddProduct = '/add-item',
   Main = '/',
   Registration = '/registration',
-  Login = 'login',
-  Order = 'order',
-  Orders = 'orders',
-  Cart = 'cart',
+  Login = '/login',
+  Order = '/order',
+  Orders = '/orders',
+  Cart = '/cart',
 }
