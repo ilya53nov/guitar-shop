@@ -6,9 +6,10 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
-import { CreateUserDto, LoginUserDto } from '@project/core';
-import { ApiRoute } from '@project/shared-types';
+import { AccessTokenGuard, CreateUserDto, GetUser, LoginUserDto } from '@project/core';
+import { ApiRoute, ParametrKey } from '@project/shared-types';
 import { UserService } from './user.service';
 
 @Controller('user')
@@ -28,6 +29,12 @@ export class UserController {
   @Get()
   findAll() {
     return this.userService.findAll();
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Get('me')
+  getMe(@GetUser(ParametrKey.Id) userId: string) {
+    return this.userService.getMe(userId);
   }
 
   @Get(':id')

@@ -1,17 +1,15 @@
-import { CreateProductDto } from "@project/core";
-import { GuitarString, GuitarType } from "@project/shared-types";
-import { FormEvent } from "react";
-import { async } from "rxjs";
 import AddItemSubmitForm from '../../components/add-item-submit-form/add-item-submit-form';
 import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from "../../components/page-header/page-header";
+import { useGetMeQuery } from '../../store/user-api';
 
 
 export default function AddItemScreen():JSX.Element {
+  const {data: userData, isSuccess: isSuccessUser} = useGetMeQuery({});
 
   return (
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={userData} />
       <main className="page-content">
         <section className="add-item">
           <div className="container">

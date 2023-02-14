@@ -1,4 +1,4 @@
-import { CreateUserDto, LoginUserDto, UserRdo } from '@project/core';
+import { CreateUserDto, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
 import { ApiRoute } from '@project/shared-types';
 import { api } from './api';
 
@@ -17,11 +17,20 @@ const userApi = api.injectEndpoints({
       query: (loginUserDto: LoginUserDto) => ({
         url: `${ApiRoute.User}/${ApiRoute.Login}`,
         method: 'POST',
-        body: loginUserDto,        
+        body: loginUserDto,    
+        
       }) ,
-      transformResponse: (response: UserRdo) => response,      
+      transformResponse: (response: LoggedUserRdo) => response,
+      invalidatesTags: ['User'],
+    }),
+    getMe: builder.query({
+      query: () => ({
+        url: `${ApiRoute.User}/${'me'}`,
+        method: 'GET',
+      }),
+      transformResponse: (response: UserRdo ) => response,
     })
   })  
 })
 
-export const {useRegisterUserMutation} = userApi;
+export const {useRegisterUserMutation, useLoginMutation, useGetMeQuery} = userApi;

@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import PageFooter from '../../components/page-footer/page-footer'
 import PageHeader from '../../components/page-header/page-header';
 import { useGetProductQuery } from '../../store/product-api';
+import { useGetMeQuery } from '../../store/user-api';
 
 
 export default function ProductScreen():JSX.Element {
@@ -11,13 +12,15 @@ export default function ProductScreen():JSX.Element {
 
   const {data: product, isSuccess} = useGetProductQuery(productId!);
 
+  const {data: userData} = useGetMeQuery({});
+
   if (!isSuccess) {
     return(<div>not success</div>)
   }
 
   return (
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={userData} />
       <main className="page-content">
         <div className="container">
           <h1 className="page-content__title title title--bigger">Товар</h1>

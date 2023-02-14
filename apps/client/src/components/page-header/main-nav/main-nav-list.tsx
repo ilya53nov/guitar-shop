@@ -4,7 +4,7 @@ import AdminMainNavList from "./admin-main-nav-list";
 import UserMainNavList from "./user-main-nav-list";
 
 export type MainNavListProps = {
-  user: UserRdo | null;
+  user: UserRdo | undefined;
 }
 
 export default function MainNavList({ user }: MainNavListProps):JSX.Element {

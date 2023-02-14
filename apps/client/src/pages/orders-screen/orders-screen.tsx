@@ -4,7 +4,7 @@ import PageHeader from '../../components/page-header/page-header';
 export default function OrdersScreen():JSX.Element {
   return(
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={undefined} />
       <main className="page-content orders__main">
         <section className="orders">
           <div className="container">

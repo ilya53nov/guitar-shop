@@ -1,10 +1,13 @@
 import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from '../../components/page-header/page-header';
+import { useGetMeQuery } from '../../store/user-api';
 
 export default function CartScreen():JSX.Element {
+  const {data: userData, isSuccess: isSuccessUser} = useGetMeQuery({});
+
   return(
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={userData} />
       <main className="page-content">
         <div className="container">
           <h1 className="title title--bigger page-content__title">Корзина</h1>

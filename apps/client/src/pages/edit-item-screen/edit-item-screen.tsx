@@ -19,7 +19,7 @@ export default function EditItemScreen():JSX.Element {
 
   return(
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={undefined} />
       <main className="page-content">
         <section className="edit-item">
           <div className="container">

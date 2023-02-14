@@ -28,7 +28,7 @@ export default function PageHeader({ user }: MainNavListProps):JSX.Element {
         <div className="header__wrapper"><a className="header__logo logo"><img className="logo__img" width="70" height="70" src="src/assets/img/svg/logo.svg" alt="Логотип" /></a>
           <MainNav user={user}/>
           <div className="header__container">
-            <span className="header__user-name">Имя</span>
+            <span className="header__user-name">{user ? user.name : 'Имя'}</span>
             <a className="header__link" href={ClientRoute.Login} aria-label="Перейти в личный кабинет">
               <svg className="header__link-icon" width="12" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-account"></use>

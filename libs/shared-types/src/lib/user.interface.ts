@@ -1,5 +1,3 @@
-import { UserRole } from './user-role.enum';
-
 export interface User {
   id?: string;
   name: string;
@@ -7,5 +5,5 @@ export interface User {
   password?: string;
   role?: string;
   passwordHash?: string;
-  refreshTokenHash?: string;
+  token?: string;
 }

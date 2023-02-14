@@ -9,7 +9,6 @@ export class UserEntity implements Entity<UserEntity, User>, User {
   //public password: string;
   public role: string;
   public passwordHash: string;
-  public refreshTokenHash: string;
 
   constructor(user: User) {
     this.fillEntity(user);
@@ -28,17 +27,8 @@ export class UserEntity implements Entity<UserEntity, User>, User {
     return this;
   }
 
-  public async setRefreshToken(token: string): Promise<UserEntity> {
-    this.refreshTokenHash = await this.getHash(token);
-    return this;
-  }
-
   public async comparePassword(password: string): Promise<boolean> {
     return await verify(this.passwordHash, password);
-  }
-
-  public async compareRefreshToken(token: string): Promise<boolean> {
-    return await verify(this.refreshTokenHash, token);
   }
 
   public fillEntity(entity: User): void {
@@ -48,6 +38,5 @@ export class UserEntity implements Entity<UserEntity, User>, User {
     //this.password = entity.password;
     this.role = entity.role;
     this.passwordHash = entity.passwordHash;
-    this.refreshTokenHash = entity.refreshTokenHash;
   }
 }

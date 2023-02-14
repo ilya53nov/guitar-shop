@@ -33,7 +33,7 @@ export default function RegistrationScreen():JSX.Element {
 
   return(
     <div className="wrapper">
-      <PageHeader user={null} />
+      <PageHeader user={undefined} />
       <main className="page-content">
         <div className="container">
           <section className="login">

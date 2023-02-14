@@ -1,6 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { CreateUserDto, fillObject, JwtConfig, LoginUserDto, UserRdo } from '@project/core';
+import { CreateUserDto, fillObject, JwtConfig, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
 import { User, UserRole } from '@project/shared-types';
 import { AuthUserDescription } from './user.constants';
 import { UserEntity } from './user.entity';
@@ -13,7 +13,7 @@ type PayloadJwtService = {
 };
 
 type JwtToken = {
-  accessToken: string,
+  token: string,
 }
 
 @Injectable()
@@ -25,7 +25,7 @@ export class UserService {
   ) {}
 
   public async create(createUserDto: CreateUserDto) {
-    const user = {...createUserDto, role: 'user', refreshTokenHash: '12'};
+    const user = {...createUserDto, role: 'user'};
 
     const existUser = await this.userRepository.findByEmail(createUserDto.email);
 
@@ -45,6 +45,12 @@ export class UserService {
     return fillObject(UserRdo, newUser);
   }
 
+  public async getMe(id: string) {
+    const existUser = await this.userRepository.findById(id);
+
+    return fillObject(UserRdo, existUser);
+  }
+
   private getPayloadJwtService(user: User): PayloadJwtService {
     return {
       sub: user.id,
@@ -55,7 +61,7 @@ export class UserService {
 
   private async getToken(payload: PayloadJwtService): Promise<JwtToken> {
     return {
-      accessToken: await this.jwtService.signAsync(payload, await this.jwtConfig.getJwtAccessConfig()),
+      token: await this.jwtService.signAsync(payload, await this.jwtConfig.getJwtAccessConfig()),
     }
   }
 
@@ -84,7 +90,9 @@ export class UserService {
 
     const token = await this.getToken(payload);
 
-    return token;
+
+
+    return fillObject(LoggedUserRdo, {...user, ...token});
   }
 
   findAll() {

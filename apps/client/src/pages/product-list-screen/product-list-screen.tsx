@@ -23,7 +23,7 @@ export default function ProductListScreen():JSX.Element {
 
   return (
     <div className="wrapper">
-      <PageHeader user={null} />    
+      <PageHeader user={undefined} />    
       <main className="page-content">
         <section className="product-list">
           <div className="container">

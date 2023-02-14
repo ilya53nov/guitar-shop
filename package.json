@@ -64,7 +64,7 @@
     "@nestjs/passport": "^9.0.3",
     "@nestjs/platform-express": "^9.0.0",
     "@nestjs/serve-static": "^3.0.1",
-    "@prisma/client": "^4.9.0",
+    "@prisma/client": "^4.10.1",
     "@reduxjs/toolkit": "^1.9.2",
     "argon2": "^0.30.3",
     "axios": "^1.0.0",
