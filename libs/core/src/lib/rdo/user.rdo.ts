@@ -13,4 +13,7 @@ export class UserRdo implements User {
 
   @Expose()
   role!: string;
+
+  @Expose()
+  cart!: any;
 }

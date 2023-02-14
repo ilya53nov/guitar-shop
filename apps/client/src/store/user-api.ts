@@ -1,4 +1,5 @@
-import { CreateUserDto, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
+import { Product } from '@prisma/client';
+import { CreateUserDto, LoggedUserRdo, LoginUserDto, ProductRdo, UserRdo } from '@project/core';
 import { ApiRoute } from '@project/shared-types';
 import { api } from './api';
 
@@ -29,8 +30,16 @@ const userApi = api.injectEndpoints({
         method: 'GET',
       }),
       transformResponse: (response: UserRdo ) => response,
+    }),
+    addProductToCart: builder.mutation({
+      query: (product: ProductRdo) => ({
+        url: `${ApiRoute.User}/${'cart'}`,
+        method: 'POST',
+        body: product
+      }),
+      transformResponse: (response: UserRdo ) => response,      
     })
   })  
 })
 
-export const {useRegisterUserMutation, useLoginMutation, useGetMeQuery} = userApi;
+export const {useRegisterUserMutation, useLoginMutation, useGetMeQuery, useAddProductToCartMutation} = userApi;

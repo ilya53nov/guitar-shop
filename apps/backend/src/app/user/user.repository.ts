@@ -32,14 +32,31 @@ export class UserRepository {
     })
   }
 
-  public async addProductToCart(userId: string, productId: string, product: Product) {
+  public async addProductToCart(userId: string, product: Product) {  
 
     return await this.prisma.user.update({
       where: {
         id: userId,
       },
       data: {
-        cart: {push: productId}
+        cart: {
+          connectOrCreate: {
+            where: {
+              productId: product.id,
+            },
+            create: {
+              productId: product.id,
+            },              
+          },
+      
+        },
+        
+      },
+      include: {
+        //cart: true,
+        _count: true,
+      },
+
     })
   }
 

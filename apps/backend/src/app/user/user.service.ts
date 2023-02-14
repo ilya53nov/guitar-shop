@@ -1,5 +1,6 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
+import { Product } from '@prisma/client';
 import { CreateUserDto, fillObject, JwtConfig, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
 import { User, UserRole } from '@project/shared-types';
 import { AuthUserDescription } from './user.constants';
@@ -93,6 +94,12 @@ export class UserService {
 
 
     return fillObject(LoggedUserRdo, {...user, ...token});
+  }
+
+  public async addProductToCart(userId: string, product: Product) {
+    const updatedUser = await this.userRepository.addProductToCart(userId, product);
+
+    return fillObject(UserRdo, updatedUser);
   }
 
   findAll() {

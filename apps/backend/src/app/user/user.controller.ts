@@ -8,6 +8,7 @@ import {
   Delete,
   UseGuards,
 } from '@nestjs/common';
+import { Product } from '@prisma/client';
 import { AccessTokenGuard, CreateUserDto, GetUser, LoginUserDto } from '@project/core';
 import { ApiRoute, ParametrKey } from '@project/shared-types';
 import { UserService } from './user.service';
@@ -24,6 +25,12 @@ export class UserController {
   @Post(ApiRoute.Login)
   public async login(@Body() loginUserDto: LoginUserDto) {        
     return this.userService.loginUser(loginUserDto);
+  }
+
+  @UseGuards(AccessTokenGuard)
+  @Post('cart')
+  public async addProductToCart(@GetUser(ParametrKey.Id) userId: string, @Body() product: Product) {        
+    return this.userService.addProductToCart(userId, product);
   }
 
   @Get()

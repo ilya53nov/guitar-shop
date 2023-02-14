@@ -32,6 +32,9 @@ export class ProductRdo implements Guitar {
   @Expose()
   price!: number;
 
+  @Expose()
+  cart!: any;
+
   //@Expose()
   //reviewCount?: number | undefined;
 

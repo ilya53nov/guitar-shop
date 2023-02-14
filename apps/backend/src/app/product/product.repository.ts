@@ -9,7 +9,10 @@ export class ProductRepository implements CRUDRepository<ProductEntity, string, 
   constructor(private readonly prisma: PrismaService) {}
 
   public async findAll(): Promise<Guitar[]> {
-    return await this.prisma.product.findMany();
+    return await this.prisma.product.findMany({
+      include: {cart: true},
+
+    });
   }
 
   public async findById(id: string): Promise<Guitar> {

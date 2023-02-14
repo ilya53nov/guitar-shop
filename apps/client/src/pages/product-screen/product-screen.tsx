@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import PageFooter from '../../components/page-footer/page-footer'
 import PageHeader from '../../components/page-header/page-header';
 import { useGetProductQuery } from '../../store/product-api';
-import { useGetMeQuery } from '../../store/user-api';
+import { useAddProductToCartMutation, useGetMeQuery } from '../../store/user-api';
 
 
 export default function ProductScreen():JSX.Element {
@@ -14,8 +14,14 @@ export default function ProductScreen():JSX.Element {
 
   const {data: userData} = useGetMeQuery({});
 
+  const [addProductToCart] = useAddProductToCartMutation();
+
   if (!isSuccess) {
     return(<div>not success</div>)
+  }
+
+  const handleAddProductToCart = () => {
+    addProductToCart(product);
   }
 
   return (
@@ -76,7 +82,7 @@ export default function ProductScreen():JSX.Element {
             </div>
             <div className="product-container__price-wrapper">
               <p className="product-container__price-info product-container__price-info--title">Цена:</p>
-              <p className="product-container__price-info product-container__price-info--value">{product.price.toLocaleString()} ₽</p><a className="button button--red button--big product-container__button" href="#">Добавить в корзину</a>
+              <p className="product-container__price-info product-container__price-info--value">{product.price.toLocaleString()} ₽</p><button onClick={handleAddProductToCart} className="button button--red button--big product-container__button">Добавить в корзину</button>
             </div>
           </div>
           <section className="reviews">
