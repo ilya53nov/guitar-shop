@@ -4,8 +4,8 @@ import { useDecrementProductCountMutation, useDeleteProductFromCartMutation, use
 
 type CartItemProps = {
   productId: string;
-  incrementSumCart: any
-  decrementSumCart: any;
+  onIncrementSumCart: any
+  onDecrementSumCart: any;
 }
 
 export default function CartItem({productId, decrementSumCart, incrementSumCart}: CartItemProps):JSX.Element {
