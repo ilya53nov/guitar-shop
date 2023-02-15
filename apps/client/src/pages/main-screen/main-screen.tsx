@@ -36,7 +36,7 @@ export default function MainScreen():JSX.Element {
           <div className="catalog">
             <CatalogFilter />
             <CatalogSort />
-            <ProductCardList products={products} />
+            <ProductCardList products={products} userId={userData?.id} />
             <PaginationList />
           </div>
         </div>

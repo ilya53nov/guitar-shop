@@ -35,11 +35,11 @@ export default function PageHeader({ user }: MainNavListProps):JSX.Element {
               </svg>
               <span className="header__link-text">Вход</span>
             </a>
-            <a className="header__cart-link" href="cart.html" aria-label="Перейти в корзину">
+            <a className="header__cart-link" href={ClientRoute.Cart} aria-label="Перейти в корзину">
               <svg className="header__cart-icon" width="14" height="14" aria-hidden="true">
                 <use xlinkHref="#icon-basket"></use>
               </svg>
-              <span className="header__cart-count">2</span>
+              <span className="header__cart-count">{user ? user.userInfo.cart : 0}</span>
             </a>
           </div>
         </div>

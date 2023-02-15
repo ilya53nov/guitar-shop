@@ -4,9 +4,9 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 import { jwtAccessOptions } from '@project/core';
 import { getServeStaticConfig, staticOptions } from '../config/static.config';
 import { BACKEND_ENV_FILE_PATH } from './app.constant';
-
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { CartModule } from './cart/cart.module';
 import { CommentModule } from './comment/comment.module';
 import { ProductModule } from './product/product.module';
 import { ProductService } from './product/product.service';
@@ -29,7 +29,7 @@ import { UserModule } from './user/user.module';
     ProductModule,
     CommentModule,
     UserModule,
-    
+    CartModule,
   ],
   controllers: [AppController ],
   providers: [AppService, ProductService],

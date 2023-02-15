@@ -21,7 +21,7 @@ export default function ProductScreen():JSX.Element {
   }
 
   const handleAddProductToCart = () => {
-    addProductToCart(product);
+    addProductToCart(product.id);
   }
 
   return (

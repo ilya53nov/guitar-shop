@@ -1,5 +1,4 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from '@prisma/client';
 import { User } from '@project/shared-types';
 import { PrismaService } from '../prisma/prisma.service';
 import { UserEntity } from './user.entity';
@@ -20,6 +19,10 @@ export class UserRepository {
     return await this.prisma.user.findFirst({
       where: {
         id,
+      },
+      include: {
+        cart: true,
+        _count: true,
       }
     });
   }
@@ -32,7 +35,7 @@ export class UserRepository {
     })
   }
 
-  public async addProductToCart(userId: string, product: Product) {  
+  public async addProductToCart(userId: string, productId: string) {  
 
     return await this.prisma.user.update({
       where: {
@@ -42,10 +45,10 @@ export class UserRepository {
         cart: {
           connectOrCreate: {
             where: {
-              productId: product.id,
+              productId: productId,
             },
             create: {
-              productId: product.id,
+              productId: productId,
             },              
           },
       
@@ -53,7 +56,7 @@ export class UserRepository {
         
       },
       include: {
-        //cart: true,
+        cart: true,
         _count: true,
       },
 

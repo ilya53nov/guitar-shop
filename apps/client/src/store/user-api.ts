@@ -1,6 +1,5 @@
-import { Product } from '@prisma/client';
-import { CreateUserDto, LoggedUserRdo, LoginUserDto, ProductRdo, UserRdo } from '@project/core';
-import { ApiRoute } from '@project/shared-types';
+import { CreateUserDto, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
+import { ApiRoute, Cart } from '@project/shared-types';
 import { api } from './api';
 
 const userApi = api.injectEndpoints({
@@ -30,16 +29,49 @@ const userApi = api.injectEndpoints({
         method: 'GET',
       }),
       transformResponse: (response: UserRdo ) => response,
+      providesTags: ['User'],
     }),
     addProductToCart: builder.mutation({
-      query: (product: ProductRdo) => ({
+      query: (productId: string) => ({
         url: `${ApiRoute.User}/${'cart'}`,
         method: 'POST',
-        body: product
+        body: {productId}
       }),
-      transformResponse: (response: UserRdo ) => response,      
-    })
-  })  
+      transformResponse: (response: UserRdo ) => response,     
+      invalidatesTags: ['Products', 'User']
+    }),
+    deleteProductFromCart: builder.mutation({
+      query: (productId: string) => ({
+        url: `${'cart'}/product/${productId}`,
+        method: 'DELETE',   
+    }),
+    invalidatesTags: ['Products', 'User'],
+    }),
+    incrementProductCount: builder.mutation({
+      query: (productId: string) => ({
+        url: `${'cart'}/product/increment/${productId}`,
+        method: 'PATCH',   
+    }),
+    transformResponse: (response: Cart ) => response.count,  
+    //invalidatesTags: ['Products', 'User'],
+    }),
+    decrementProductCount: builder.mutation({
+      query: (productId: string) => ({
+        url: `${'cart'}/product/decrement/${productId}`,
+        method: 'PATCH',   
+    }),
+    transformResponse: (response: Cart ) => response.count,  
+    //invalidatesTags: ['Products', 'User'],
+    }),
+  }),
 })
 
-export const {useRegisterUserMutation, useLoginMutation, useGetMeQuery, useAddProductToCartMutation} = userApi;
+export const {
+  useRegisterUserMutation,
+  useLoginMutation,
+  useGetMeQuery,
+  useAddProductToCartMutation,
+  useDeleteProductFromCartMutation,
+  useIncrementProductCountMutation,
+  useDecrementProductCountMutation
+} = userApi;

@@ -29,8 +29,8 @@ export class UserController {
 
   @UseGuards(AccessTokenGuard)
   @Post('cart')
-  public async addProductToCart(@GetUser(ParametrKey.Id) userId: string, @Body() product: Product) {        
-    return this.userService.addProductToCart(userId, product);
+  public async addProductToCart(@GetUser(ParametrKey.Id) userId: string, @Body() productId: string) {        
+    return this.userService.addProductToCart(userId, productId);
   }
 
   @Get()

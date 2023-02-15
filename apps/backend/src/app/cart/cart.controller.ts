@@ -6,37 +6,29 @@ import {
   Patch,
   Param,
   Delete,
+  UseGuards,
 } from '@nestjs/common';
+import { AccessTokenGuard } from '@project/core';
 import { CartService } from './cart.service';
-import { CreateCartDto } from './dto/create-cart.dto';
-import { UpdateCartDto } from './dto/update-cart.dto';
 
+@UseGuards(AccessTokenGuard)
 @Controller('cart')
 export class CartController {
   constructor(private readonly cartService: CartService) {}
 
-  @Post()
-  create(@Body() createCartDto: CreateCartDto) {
-    return this.cartService.create(createCartDto);
+
+  @Delete('product/:id')
+  remove(@Param('id') productId: string) {
+    return this.cartService.removeProduct(productId);
   }
 
-  @Get()
-  findAll() {
-    return this.cartService.findAll();
-  }
+  @Patch('product/increment/:id')
+  incrementCount(@Param('id') productId: string) {
+    return this.cartService.incrementCount(productId);
+  }  
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.cartService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateCartDto: UpdateCartDto) {
-    return this.cartService.update(+id, updateCartDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.cartService.remove(+id);
-  }
+  @Patch('product/decrement/:id')
+  decrementCount(@Param('id') productId: string) {
+    return this.cartService.decrementCount(productId);
+  }  
 }

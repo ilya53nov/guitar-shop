@@ -10,7 +10,9 @@ export class ProductRepository implements CRUDRepository<ProductEntity, string, 
 
   public async findAll(): Promise<Guitar[]> {
     return await this.prisma.product.findMany({
-      include: {cart: true},
+      include: {
+        cart: true,
+      },
 
     });
   }
@@ -22,6 +24,7 @@ export class ProductRepository implements CRUDRepository<ProductEntity, string, 
       },
       include: {
         comments: true,
+        cart: true,
       }
     });
   }
@@ -55,6 +58,7 @@ export class ProductRepository implements CRUDRepository<ProductEntity, string, 
       },
       include: {
         comments: true,
+        cart: true,
       }
     });
   }

@@ -1,4 +1,4 @@
-import { User } from '@project/shared-types';
+import { Cart, User, UserInfo } from '@project/shared-types';
 import { Expose } from 'class-transformer';
 
 export class UserRdo implements User {
@@ -15,5 +15,8 @@ export class UserRdo implements User {
   role!: string;
 
   @Expose()
-  cart!: any;
+  cart!: Cart[];
+
+  @Expose({name: '_count'})
+  userInfo!: UserInfo;
 }

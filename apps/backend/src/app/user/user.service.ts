@@ -96,8 +96,12 @@ export class UserService {
     return fillObject(LoggedUserRdo, {...user, ...token});
   }
 
-  public async addProductToCart(userId: string, product: Product) {
-    const updatedUser = await this.userRepository.addProductToCart(userId, product);
+  public async addProductToCart(userId: string, productId: any) {
+    
+    
+    const updatedUser = await this.userRepository.addProductToCart(userId, productId.productId);
+
+    console.log(updatedUser);
 
     return fillObject(UserRdo, updatedUser);
   }
