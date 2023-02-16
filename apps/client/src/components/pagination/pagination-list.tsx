@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function PaginationList():JSX.Element {
   return(
     <div className="pagination page-content__pagination">

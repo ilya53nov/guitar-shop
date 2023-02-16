@@ -1,4 +1,3 @@
-import React from 'react';
 
 export default function FooterLinks():JSX.Element {
   return(

@@ -8,11 +8,11 @@ export default function CartScreen():JSX.Element {
   const {data: userData, isSuccess: isSuccessUser} = useGetMeQuery({});
   const [sumCart, setSumCart] = useState(0);
 
-  const incrementSumCart = (value: number) => {
+  const onCartProductIncrement = (value: number) => {
     setSumCart(sumCart + value);
   }
 
-  const decrementSumCart = (value: number) => {
+  const onCartProductDecrement = (value: number) => {
     setSumCart(sumCart - value);
   }
 
@@ -20,7 +20,7 @@ export default function CartScreen():JSX.Element {
     return(<div>not success</div>)
   }
 
-  const productsCart = userData.cart.map((item) => <CartItem decrementSumCart={decrementSumCart} incrementSumCart={incrementSumCart} productId={item.productId} key={item.productId} />);
+  const productsCart = userData.cart.map((item) => <CartItem onCartProductDecrement={onCartProductDecrement} onCartProductIncrement={onCartProductIncrement} productId={item.productId} key={item.productId} />);
 
   return(
     <div className="wrapper">

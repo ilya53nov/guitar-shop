@@ -5,13 +5,14 @@
 
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { CLIENT_END_POINT } from '@project/core';
 
 import { AppModule } from './app/app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
 
-  app.enableCors({credentials: true, origin: "http://localhost:4200"});
+  app.enableCors({credentials: true, origin: CLIENT_END_POINT});
 
   const globalPrefix = 'api';
   app.setGlobalPrefix(globalPrefix);

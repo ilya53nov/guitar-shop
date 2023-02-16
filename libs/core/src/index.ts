@@ -22,3 +22,4 @@ export * from './lib/decorators/get-user.decorator';
 export * from './lib/decorators/roles.decorator';
 export * from './lib/guards/access-token.guard';
 export * from './lib/guards/roles.guard';
+export * from './lib/constants';

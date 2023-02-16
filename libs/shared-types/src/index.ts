@@ -11,3 +11,5 @@ export * from './lib/exception-description.enum';
 export * from './lib/api-route.enum';
 export * from './lib/client-route.enum';
 export * from './lib/parametr-key.enum';
+export * from './lib/port-db.enum';
+export * from './lib/env-validation-message.enum';

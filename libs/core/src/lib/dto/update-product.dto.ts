@@ -12,7 +12,6 @@ export class UpdateProductDto implements Guitar {
   description!: string;
 
   @IsOptional()
-  //@Matches(ProductValidation.Image.fileType, { message: ExeptionDescription.InvalidImageType })
   image!: string;
 
   @IsOptional()

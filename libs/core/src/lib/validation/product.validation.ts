@@ -10,7 +10,7 @@ export const ProductValidation = {
     max: 1024,
   },
   Image: {
-    fileType: /image\/(jpg|png)$/, // реализовать список доступных форматов
+    fileType: /image\/(jpg|png)$/, 
   },
   ArticleLength: {
     min: 5,

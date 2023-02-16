@@ -6,7 +6,7 @@ export class CreateCommentDto implements Comment {
   @IsUUID()
   productId!: string;
 
-  //@IsUUID()
+  @IsUUID()
   authorId!: string;
 
   @IsNumber()

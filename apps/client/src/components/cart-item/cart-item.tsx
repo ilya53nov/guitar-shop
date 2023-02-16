@@ -1,14 +1,14 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useGetProductQuery } from "../../store/product-api";
 import { useDecrementProductCountMutation, useDeleteProductFromCartMutation, useIncrementProductCountMutation } from "../../store/user-api";
 
 type CartItemProps = {
   productId: string;
-  onIncrementSumCart: any
-  onDecrementSumCart: any;
+  onCartProductIncrement: (value: number) => void;
+  onCartProductDecrement: (value: number) => void;
 }
 
-export default function CartItem({productId, decrementSumCart, incrementSumCart}: CartItemProps):JSX.Element {
+export default function CartItem({productId, onCartProductDecrement, onCartProductIncrement}: CartItemProps):JSX.Element {
   const {data: product, isSuccess} = useGetProductQuery(productId);
   const [count, setCount] = useState(1);
   const inputValueRef = useRef<HTMLInputElement | null>(null);
@@ -31,19 +31,17 @@ export default function CartItem({productId, decrementSumCart, incrementSumCart}
     return(<div>not success</div>)
   } 
 
-  //incrementSumCart(product.price); 
-
   const handleDeleteProduct = () => {
     deleteProductFromCart(product.id);
   }
 
-  const handleInitSumCart = () => incrementSumCart(product.price * product.cart.count);
+  const handleInitSumCart = () => onCartProductIncrement(product.price * product.cart.count);
 
   const handleIncrementProductCount = () => {
     if (count > 0) {
       incrementProductCount(product.id).unwrap();
       setCount(count + 1);    
-      incrementSumCart(product.price); 
+      onCartProductIncrement(product.price); 
     }
   }
 
@@ -51,7 +49,7 @@ export default function CartItem({productId, decrementSumCart, incrementSumCart}
     if (count > 1) {    
       decrementProductCount(product.id);
       setCount(count - 1);
-      decrementSumCart(product.price);
+      onCartProductDecrement(product.price);
     }
   }
 

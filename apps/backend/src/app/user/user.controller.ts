@@ -3,17 +3,13 @@ import {
   Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
   UseGuards,
 } from '@nestjs/common';
-import { Product } from '@prisma/client';
 import { AccessTokenGuard, CreateUserDto, GetUser, LoginUserDto } from '@project/core';
 import { ApiRoute, ParametrKey } from '@project/shared-types';
 import { UserService } from './user.service';
 
-@Controller('user')
+@Controller(ApiRoute.User)
 export class UserController {
   constructor(private readonly userService: UserService) {}
 
@@ -28,24 +24,14 @@ export class UserController {
   }
 
   @UseGuards(AccessTokenGuard)
-  @Post('cart')
-  public async addProductToCart(@GetUser(ParametrKey.Id) userId: string, @Body() productId: string) {        
-    return this.userService.addProductToCart(userId, productId);
-  }
-
-  @Get()
-  findAll() {
-    return this.userService.findAll();
+  @Post(ApiRoute.Cart)
+  public async addProductToCart(@GetUser(ParametrKey.Id) userId: string, @Body() productId: {productId: string}) {        
+    return this.userService.addProductToCart(userId, productId.productId);
   }
 
   @UseGuards(AccessTokenGuard)
-  @Get('me')
+  @Get(ApiRoute.Me)
   getMe(@GetUser(ParametrKey.Id) userId: string) {
     return this.userService.getMe(userId);
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.userService.findOne(+id);
   }
 }

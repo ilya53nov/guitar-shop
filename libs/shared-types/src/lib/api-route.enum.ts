@@ -5,4 +5,9 @@ export enum ApiRoute {
   Register = 'register',
   User = 'user',
   Login = 'login',
+  Me = 'me',
+  Increment = 'increment',
+  Decrement = 'decrement',
+  Cart = 'cart',
+  Comment = 'comment',
 }

@@ -25,7 +25,7 @@ export default function PageHeader({ user }: MainNavListProps):JSX.Element {
   return(
     <header className={getClassNameUserStatus()} id="header">
       <div className="container">
-        <div className="header__wrapper"><a className="header__logo logo"><img className="logo__img" width="70" height="70" src="src/assets/img/svg/logo.svg" alt="Логотип" /></a>
+        <div className="header__wrapper"><a className="header__logo logo" href={ClientRoute.Main}><img className="logo__img" width="70" height="70" src="src/assets/img/svg/logo.svg" alt="Логотип" /></a>
           <MainNav user={user}/>
           <div className="header__container">
             <span className="header__user-name">{user ? user.name : 'Имя'}</span>

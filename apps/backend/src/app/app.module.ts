@@ -8,6 +8,7 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { CartModule } from './cart/cart.module';
 import { CommentModule } from './comment/comment.module';
+import { validateEnvironments } from './env.validation';
 import { ProductModule } from './product/product.module';
 import { ProductService } from './product/product.service';
 import { UserModule } from './user/user.module';
@@ -20,7 +21,7 @@ import { UserModule } from './user/user.module';
       isGlobal: true,
       envFilePath: BACKEND_ENV_FILE_PATH,
       load: [staticOptions, jwtAccessOptions],
-      //validate: validateEnvironments,
+      validate: validateEnvironments,
     }),
     ServeStaticModule.forRootAsync({
       useFactory: getServeStaticConfig,

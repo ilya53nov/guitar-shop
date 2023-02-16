@@ -1,5 +1,5 @@
 import { LoginUserDto } from '@project/core';
-import { ClientRoute } from '@project/shared-types';
+import { ClientRoute, ParametrKey } from '@project/shared-types';
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import PageFooter from '../../components/page-footer/page-footer';
@@ -17,7 +17,7 @@ export default function LoginScreen():JSX.Element {
   const onSubmit = async (loginUserDto: LoginUserDto) => {
     const logged = await login(loginUserDto).unwrap();
 
-    localStorage.setItem('token', logged.token);
+    localStorage.setItem(ParametrKey.Token, logged.token);
 
     navigate(ClientRoute.Main);
   }
@@ -30,7 +30,6 @@ export default function LoginScreen():JSX.Element {
       password: password,
     })
   }
-
 
   return(
     <div className="wrapper">

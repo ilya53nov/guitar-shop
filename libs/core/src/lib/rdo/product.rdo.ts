@@ -1,4 +1,4 @@
-import { Cart, Guitar, GuitarString, GuitarType } from '@project/shared-types';
+import { Cart, Guitar } from '@project/shared-types';
 import { Expose } from 'class-transformer';
 
 export class ProductRdo implements Guitar {
@@ -34,8 +34,4 @@ export class ProductRdo implements Guitar {
 
   @Expose()
   cart!: Cart;
-
-  //@Expose()
-  //reviewCount?: number | undefined;
-
 }

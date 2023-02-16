@@ -1,3 +1,4 @@
+import { ClientRoute } from '@project/shared-types';
 import AddItemSubmitForm from '../../components/add-item-submit-form/add-item-submit-form';
 import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from "../../components/page-header/page-header";
@@ -5,7 +6,7 @@ import { useGetMeQuery } from '../../store/user-api';
 
 
 export default function AddItemScreen():JSX.Element {
-  const {data: userData, isSuccess: isSuccessUser} = useGetMeQuery({});
+  const {data: userData} = useGetMeQuery({});
 
   return (
     <div className="wrapper">
@@ -15,9 +16,9 @@ export default function AddItemScreen():JSX.Element {
           <div className="container">
             <h1 className="add-item__title">Новый товар</h1>
             <ul className="breadcrumbs">
-              <li className="breadcrumbs__item"><a className="link" href="./main.html">Каталог</a>
+              <li className="breadcrumbs__item"><a className="link" href={ClientRoute.Main}>Каталог</a>
               </li>
-              <li className="breadcrumbs__item"><a className="link" href="./main.html">Товары</a>
+              <li className="breadcrumbs__item"><a className="link" href={ClientRoute.Products}>Товары</a>
               </li>
               <li className="breadcrumbs__item"><a className="link">Новый товар</a>
               </li>

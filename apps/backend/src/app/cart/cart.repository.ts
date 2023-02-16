@@ -1,5 +1,6 @@
 import { Injectable } from "@nestjs/common";
 import { PrismaService } from "../prisma/prisma.service";
+import { DEFAULT_COUNT_CHANGE } from "./cart.contants";
 
 @Injectable()
 export class CartRepository  {
@@ -20,7 +21,7 @@ export class CartRepository  {
       },
       data: {
         count: {
-          increment: 1,
+          increment: DEFAULT_COUNT_CHANGE,
         },
       },
     })
@@ -33,7 +34,7 @@ export class CartRepository  {
       },
       data: {
         count: {
-          decrement: 1,
+          decrement: DEFAULT_COUNT_CHANGE,
         },
       },
     })
