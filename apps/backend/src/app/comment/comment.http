@@ -13,12 +13,3 @@ Content-Type: application/json
 }
 
 ###
-
-
-# Get all products
-
-GET http://localhost:3333/api/product HTTP/1.1
-
-###
-
-

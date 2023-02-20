@@ -5,7 +5,6 @@ import PageFooter from '../../components/page-footer/page-footer';
 import PageHeader from '../../components/page-header/page-header';
 import { useGetProductsQuery } from '../../store/product-api';
 
-
 export default function ProductListScreen():JSX.Element {
   const {data: products, isSuccess} = useGetProductsQuery({});
 
@@ -13,9 +12,7 @@ export default function ProductListScreen():JSX.Element {
 
   if (!isSuccess) {
     return(<div>not success</div>)
-  }
-
-  
+  }  
 
   const goAddProductScreen = () => {
     navigate(ClientRoute.AddProduct);

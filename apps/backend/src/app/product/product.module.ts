@@ -4,7 +4,6 @@ import { ProductController } from './product.controller';
 import { ProductRepository } from './product.repository';
 import { PrismaModule } from '../prisma/prisma.module';
 import { MulterModule } from '@nestjs/platform-express';
-
 import { ConfigService } from '@nestjs/config';
 import { getMulterConfig } from '../../config/multer.config';
 

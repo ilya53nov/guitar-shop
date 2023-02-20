@@ -20,7 +20,7 @@ export default function CartScreen():JSX.Element {
     return(<div>not success</div>)
   }
 
-  const productsCart = userData.cart.map((item) => <CartItem decrementSumCart={decrementSumCart} incrementSumCart={incrementSumCart} productId={item.productId} key={item.productId} />);
+  const productsCart = userData.cart.map((item) => <CartItem onCartProductDecrement={decrementSumCart} onCartProductIncrement={incrementSumCart} productId={item.productId} key={item.productId} />);
 
   return(
     <div className="wrapper">

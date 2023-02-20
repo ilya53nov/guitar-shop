@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateImageProductDto, CreateProductDto, fillObject, getImageStaticPath, ImageRdo, ProductRdo, UpdateProductDto } from '@project/core';
+import { CreateProductDto, fillObject, getImageStaticPath, ImageRdo, ProductRdo, UpdateProductDto } from '@project/core';
 import { ApiRoute } from '@project/shared-types';
 import { ProductEntity } from './product.entity';
 import { ProductRepository } from './product.repository';

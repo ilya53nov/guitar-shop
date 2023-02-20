@@ -1,16 +1,13 @@
 import {
   Controller,
-  Get,
   Post,
   Body,
-  Patch,
-  Param,
-  Delete,
 } from '@nestjs/common';
 import { CreateCommentDto } from '@project/core';
+import { ApiRoute } from '@project/shared-types';
 import { CommentService } from './comment.service';
 
-@Controller('comment')
+@Controller(ApiRoute.Comment)
 export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
@@ -18,16 +15,5 @@ export class CommentController {
   create(@Body() createCommentDto: CreateCommentDto) {
     return this.commentService.create(createCommentDto);
   }
-
-  @Get()
-  findAll() {
-    return this.commentService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.commentService.findOne(+id);
-  }
-
 
 }

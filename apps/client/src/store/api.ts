@@ -1,17 +1,32 @@
-import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react'
+import { EndPoint, ParametrKey } from '@project/shared-types';
+import {createApi, fetchBaseQuery} from '@reduxjs/toolkit/query/react';
+
+export enum ApiTag {
+  Products = 'Products',
+  User = 'User',
+  Api = 'api',
+}
+
+export enum ApiMethod {
+  Post = 'POST',
+  Get = 'GET',
+  Delete = 'DELETE',
+  Patch = "PATCH",
+  Put = 'PUT',
+}
 
 export const api = createApi({
-  reducerPath: "api",
+  reducerPath: ApiTag.Api,
   baseQuery: fetchBaseQuery({
-    baseUrl: "http://localhost:3333/api/",
+    baseUrl: EndPoint.Backend,
     prepareHeaders: (headers, { getState }) => {
-      const token = localStorage.getItem('token')
+      const token = localStorage.getItem(ParametrKey.Token)
       if (token) {
-        headers.set('Authorization', `Bearer ${token}`)
+        headers.set(ParametrKey.Authorization, `Bearer ${token}`)
       }
       return headers
     },
   }),
-  tagTypes: ['Products', 'User'],
+  tagTypes: [ApiTag.Products, ApiTag.User],
   endpoints: () => ({}),
 });

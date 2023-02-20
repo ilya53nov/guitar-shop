@@ -17,8 +17,6 @@ export default function ProductCard({product, userId}: ProductProps):JSX.Element
   const goProductScreen = (id: string) => navigate(`${ClientRoute.Product}/${id}`) ;
   const goCartScreen = () => navigate(ClientRoute.Cart) ;
 
-  console.log(product.cart);
-
   const handleClickDetail = () => {
     goProductScreen(product.id);
   }
@@ -43,8 +41,7 @@ export default function ProductCard({product, userId}: ProductProps):JSX.Element
         {product.cart && product.cart.userId === userId
         ? <button onClick={handleClickCart} className="button button--red-border button--mini button--in-cart">В Корзине</button>
         : <button onClick={handleClickBuyProduct} className="button button--red button--mini button--add-to-cart">Купить</button>      
-        }
-        
+        }        
         
       </div>
     </div>

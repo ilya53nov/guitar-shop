@@ -1,5 +1,5 @@
-import { CreateProductDto, ProductRdo, UpdateProductDto } from '@project/core';
-import { ClientRoute, GuitarString, GuitarType } from '@project/shared-types';
+import { ProductRdo, UpdateProductDto } from '@project/core';
+import { ClientRoute, GuitarString, GuitarType, ParametrKey } from '@project/shared-types';
 import { ChangeEvent, FormEvent, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAddImageMutation, useUpdateProductMutation } from '../../store/product-api';
@@ -47,7 +47,7 @@ export default function EditItemSubmitForm({product}: EditItemSubmitFormProps):J
     setImageUrl(URL.createObjectURL(evt.target.files[0]));
     
     const formData = new FormData();
-    formData.append('file', evt.target.files[0]);
+    formData.append(ParametrKey.File, evt.target.files[0]);
 
     setFile(formData);
   }

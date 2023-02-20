@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SocialList():JSX.Element {
   return(
     <div className="socials footer__socials">

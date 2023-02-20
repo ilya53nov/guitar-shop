@@ -1,12 +1,12 @@
 import { CreateProductDto, ImageRdo, ProductRdo, UpdateProductDto } from '@project/core';
 import { ApiRoute } from '@project/shared-types';
-import { api } from './api';
+import { api, ApiMethod, ApiTag } from './api';
 
 const productApi = api.injectEndpoints({  
   endpoints: (builder) => ({
     getProducts: builder.query({
       query: () => `${ApiRoute.Product}`,
-      providesTags: ['Products']
+      providesTags: [ApiTag.Products]
     }),
     getProduct: builder.query({
       query: (id: string) => `${ApiRoute.Product}/${id}`,
@@ -15,30 +15,30 @@ const productApi = api.injectEndpoints({
     addNewProduct: builder.mutation({
       query: (product: CreateProductDto) => ({
         url: `${ApiRoute.Product}`,
-        method: 'POST',
+        method: ApiMethod.Post,
         body: product,
       }),
-      invalidatesTags: ['Products'],
+      invalidatesTags: [ApiTag.Products],
     }),
     updateProduct: builder.mutation({
       query: (product: {id: string, updateProductDto: UpdateProductDto}) => ({
         url: `${ApiRoute.Product}/${product.id}`,
-        method: 'PATCH',
+        method: ApiMethod.Patch,
         body: product.updateProductDto,
       }),
-      invalidatesTags: ['Products'],
+      invalidatesTags: [ApiTag.Products],
     }),
     deleteProduct: builder.mutation({
       query: (id: string) => ({
         url: `${ApiRoute.Product}/${id}`,
-        method: 'DELETE',
+        method: ApiMethod.Delete,
       }),
-      invalidatesTags: ['Products'],
+      invalidatesTags: [ApiTag.Products],
     }),
     addImage: builder.mutation({
       query: (image: FormData) => ({
         url: `${ApiRoute.Product}/${ApiRoute.UploadImage}`,
-        method: 'POST',
+        method: ApiMethod.Post,
         body: image,        
       }),
       transformResponse: (response: ImageRdo) => response.image,

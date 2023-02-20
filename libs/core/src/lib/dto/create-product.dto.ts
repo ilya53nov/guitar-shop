@@ -1,5 +1,5 @@
-import { ExeptionDescription, Guitar, GuitarString, GuitarType } from '@project/shared-types';
-import { IsEnum, IsNumber, IsString, Length, Matches, Max, Min } from 'class-validator';
+import { Guitar, GuitarString, GuitarType } from '@project/shared-types';
+import { IsEnum, IsNumber, IsString, Length, Max, Min } from 'class-validator';
 import { ProductValidation } from '../validation/product.validation';
 
 export class CreateProductDto implements Guitar {
@@ -12,7 +12,6 @@ export class CreateProductDto implements Guitar {
   description!: string;
 
   @IsString()
-  //@Matches(ProductValidation.Image.fileType, { message: ExeptionDescription.InvalidImageType })
   image!: string;
 
   @IsEnum(GuitarType)

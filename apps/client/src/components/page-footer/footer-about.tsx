@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function FooterAbout():JSX.Element {
   return(
     <section className="footer__nav-section footer__nav-section--about">

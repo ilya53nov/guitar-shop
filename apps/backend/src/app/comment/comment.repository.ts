@@ -7,9 +7,6 @@ import { CommentEntity } from './comment.entity';
 export class CommentRepository {
   constructor(private readonly prisma: PrismaService) {}
 
-  findById(id: string): Promise<Comment> {
-    throw new Error('Method not implemented.');
-  }
   public async create(item: CommentEntity): Promise<Comment> {
     const entityData = item.toObject();
 

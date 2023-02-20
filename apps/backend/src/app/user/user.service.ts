@@ -1,8 +1,7 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { Product } from '@prisma/client';
 import { CreateUserDto, fillObject, JwtConfig, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
-import { User, UserRole } from '@project/shared-types';
+import { User } from '@project/shared-types';
 import { AuthUserDescription } from './user.constants';
 import { UserEntity } from './user.entity';
 import { UserRepository } from './user.repository';
@@ -38,10 +37,6 @@ export class UserService {
       .setPassword(createUserDto.password);
 
     const newUser = await this.userRepository.create(usertEntity);
-
-    const payload = this.getPayloadJwtService(newUser);
-
-    const token = await this.getToken(payload);
 
     return fillObject(UserRdo, newUser);
   }
@@ -91,28 +86,13 @@ export class UserService {
 
     const token = await this.getToken(payload);
 
-
-
     return fillObject(LoggedUserRdo, {...user, ...token});
   }
 
-  public async addProductToCart(userId: string, productId: any) {
-    
-    
-    const updatedUser = await this.userRepository.addProductToCart(userId, productId.productId);
-
-    console.log(updatedUser);
+  public async addProductToCart(userId: string, productid: string) {    
+    const updatedUser = await this.userRepository.addProductToCart(userId, productid);
 
     return fillObject(UserRdo, updatedUser);
   }
-
-  findAll() {
-    return `This action returns all user`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
-  }
-
 
 }

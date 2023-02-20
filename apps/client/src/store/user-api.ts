@@ -1,67 +1,65 @@
 import { CreateUserDto, LoggedUserRdo, LoginUserDto, UserRdo } from '@project/core';
 import { ApiRoute, Cart } from '@project/shared-types';
-import { api } from './api';
+import { api, ApiMethod, ApiTag } from './api';
 
 const userApi = api.injectEndpoints({
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (user: CreateUserDto) => ({
         url: `${ApiRoute.User}/${ApiRoute.Register}`,
-        method: 'POST',
+        method: ApiMethod.Post,
         body: user,        
       }) ,
       transformResponse: (response: UserRdo) => response,
-      invalidatesTags: ['User'],
+      invalidatesTags: [ApiTag.User],
     }),
     login: builder.mutation({
       query: (loginUserDto: LoginUserDto) => ({
         url: `${ApiRoute.User}/${ApiRoute.Login}`,
-        method: 'POST',
+        method: ApiMethod.Post,
         body: loginUserDto,    
         
       }) ,
       transformResponse: (response: LoggedUserRdo) => response,
-      invalidatesTags: ['User'],
+      invalidatesTags: [ApiTag.User],
     }),
     getMe: builder.query({
       query: () => ({
-        url: `${ApiRoute.User}/${'me'}`,
-        method: 'GET',
+        url: `${ApiRoute.User}/${ApiRoute.Me}`,
+        method: ApiMethod.Get,
       }),
       transformResponse: (response: UserRdo ) => response,
-      providesTags: ['User'],
+      providesTags: [ApiTag.User],
     }),
     addProductToCart: builder.mutation({
       query: (productId: string) => ({
-        url: `${ApiRoute.User}/${'cart'}`,
-        method: 'POST',
+        url: `${ApiRoute.User}/${ApiRoute.Cart}`,
+        method: ApiMethod.Post,
         body: {productId}
       }),
       transformResponse: (response: UserRdo ) => response,     
-      invalidatesTags: ['Products', 'User']
+      invalidatesTags: [ApiTag.Products, ApiTag.User]
     }),
     deleteProductFromCart: builder.mutation({
       query: (productId: string) => ({
-        url: `${'cart'}/product/${productId}`,
-        method: 'DELETE',   
+        url: `${ApiRoute.Cart}/${ApiRoute.Product}/${productId}`,
+        method: ApiMethod.Delete,   
     }),
-    invalidatesTags: ['Products', 'User'],
+    invalidatesTags: [ApiTag.Products, ApiTag.User],
     }),
     incrementProductCount: builder.mutation({
       query: (productId: string) => ({
-        url: `${'cart'}/product/increment/${productId}`,
-        method: 'PATCH',   
+        url: `${ApiRoute.Cart}/${ApiRoute.Product}/${ApiRoute.Increment}/${productId}`,
+        method: ApiMethod.Patch,   
     }),
     transformResponse: (response: Cart ) => response.count,  
-    //invalidatesTags: ['Products', 'User'],
     }),
     decrementProductCount: builder.mutation({
       query: (productId: string) => ({
-        url: `${'cart'}/product/decrement/${productId}`,
-        method: 'PATCH',   
+        url: `${ApiRoute.Cart}/${ApiRoute.Product}/${ApiRoute.Decrement}/${productId}`,
+        method: ApiMethod.Patch,   
     }),
     transformResponse: (response: Cart ) => response.count,  
-    //invalidatesTags: ['Products', 'User'],
     }),
   }),
 })

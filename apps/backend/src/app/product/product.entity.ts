@@ -1,5 +1,5 @@
 import { Entity } from '@project/core';
-import { Guitar, GuitarString, GuitarType } from '@project/shared-types';
+import { Guitar } from '@project/shared-types';
 
 export class ProductEntity implements Entity<ProductEntity, Guitar>, Guitar {
   public id?: string;

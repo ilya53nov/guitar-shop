@@ -13,7 +13,7 @@ export function getServeStaticConfig(configService: ConfigService): ServeStaticM
   return [
     {
       rootPath: join(__dirname, uploadFolder),
-      serveRoot: `/${ApiRoute.Static}`,
+      serveRoot: `${ApiRoute.Static}`,
     },
   ];
 }
