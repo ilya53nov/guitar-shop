@@ -8,6 +8,10 @@
 ```
 npm i
 ```
+### Установите глобально dotenv-cli: npm i -g dotenv-cli
+```
+npm i -g dotenv-cli
+```
 
 ## Переменные окружения
 
