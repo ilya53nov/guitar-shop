@@ -31,8 +31,6 @@ export default function CartItem({productId, onCartProductDecrement, onCartProdu
     return(<div>not success</div>)
   } 
 
-  //incrementSumCart(product.price); 
-
   const handleDeleteProduct = () => {
     deleteProductFromCart(product.id);
   }
